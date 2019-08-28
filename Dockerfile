@@ -1,11 +1,8 @@
-FROM node:alpine as builder
-WORKDIR '/app'
-COPY package.json .
-
-RUN npm install
-COPY . .
-RUN npm run build
+sudo : requried
+services:
+  - docker
+before_install:
+  - docker build -t jaydeepgami56/docker-react -f Dockerfile.dev .
 
 
-FROM nginx
-COPY --from=builder /app/build /usr/share/html
+  
